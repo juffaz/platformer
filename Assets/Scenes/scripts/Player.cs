@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();   
     }
 
     // Update is called once per frame
@@ -20,9 +20,9 @@ public class Player : MonoBehaviour
     {
         Flip();
         CheckGround();
-    }
+    }   
     private void FixedUpdate()
-    {
+    {   
         rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.velocity.y);
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
         
@@ -30,14 +30,14 @@ public class Player : MonoBehaviour
         
     }
 
-    void Flip()
+    public void Flip()
     {
         if (Input.GetAxis("Horizontal") > 0)
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         if (Input.GetAxis("Horizontal") < 0)
             transform.localRotation = Quaternion.Euler(0, 180, 0); 
     }
-    void CheckGround()
+    public void CheckGround()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, 0.2F);
         isGrounded = colliders.Length > 1; 
